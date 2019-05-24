@@ -27,17 +27,17 @@ public int linearSearch(int catNumToFind)
   for(int i = 0;i<store.length;i++){
     if(store[i].getCatNum() == catNumToFind){
       b = i;
-      break;
+      return store[b].getInventory();
     }
   }
-  return b;
+  return -1;
 }
 public int recursiveLinearSearch(int catNumToFind, int startIndex)
 {
   if(store.length < startIndex+1){
     return -1;
   }else if(store[startIndex].getCatNum() == catNumToFind){
-    return startIndex;
+    return store[startIndex].getInventory();
   }else{
     return recursiveLinearSearch(catNumToFind,startIndex+1);
   }
@@ -49,7 +49,7 @@ public int binarySearch(int catNumToFind)
   boolean bob = true;
   while(bob == true){
     if(store[((min+max)/2)].getCatNum()==catNumToFind){
-      return ((min+max)/2);
+      return store[(min+max)/2].getInventory();
     }else if(max < min){
       return -1;
     }else if(store[((min+max)/2)].getCatNum()<catNumToFind){
@@ -74,7 +74,7 @@ public int recursiveBinarySearch(int catNumToFind, int nLow, int nHigh)
   }else if(store[guess].getCatNum()>catNumToFind){
     return recursiveBinarySearch(catNumToFind,nLow,guess-1);
   }else{
-    return guess;
+    return store[guess].getInventory();
   }
 }
 public void setup()
